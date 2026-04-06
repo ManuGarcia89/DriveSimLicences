@@ -1,50 +1,31 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Constitución de DriveSimLicencesServer
 
-## Core Principles
+## Principios Fundamentales
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Validación Estricta de Licencias
+Toda validación de licencia debe seguir un flujo jerárquico: existencia previa en la base de datos y luego verificación de vigencia temporal. Una licencia es válida hasta el final del día de su fecha de vencimiento inclusive.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Integridad del Modelo de Datos
+El modelo de licencia debe utilizar UUIDs como identificadores únicos para garantizar la seguridad por oscuridad y evitar la enumeración de recursos. Las fechas de vencimiento deben almacenarse sin componentes de tiempo (solo Año, Mes, Día).
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Simplicidad de la API
+Los endpoints de validación deben ser minimalistas y retornar respuestas booleanas claras (`active`). El sistema debe priorizar la rapidez de respuesta y la facilidad de consumo por parte de clientes externos.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Seguridad y Privacidad
+Nunca se deben exponer detalles internos de la base de datos o del servidor en las respuestas de error. Las licencias inexistentes deben ser tratadas con el mismo formato de respuesta que las licencias vencidas para evitar ataques de recolección de IDs.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Desarrollo Basado en Pruebas
+Cualquier cambio en la lógica de validación o en el modelo de datos debe estar respaldado por pruebas unitarias que cubran casos de éxito, expiración exacta y recursos inexistentes.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Requisitos Tecnológicos
+- **Framework:** Django con Django Rest Framework (DRF).
+- **Base de Datos:** SQLite para desarrollo, compatible con modelos relacionales estándar.
+- **Identificadores:** UUID v4.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Flujo de Trabajo
+1. Definición de la especificación técnica.
+2. Implementación de pruebas de validación.
+3. Desarrollo de la lógica de negocio y endpoints.
+4. Verificación de integridad y estándares.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
-
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
-
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Versión**: 1.0.0 | **Ratificada**: 2026-03-24 | **Última Enmienda**: 2026-03-24
