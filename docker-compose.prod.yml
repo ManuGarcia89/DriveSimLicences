@@ -21,9 +21,9 @@ services:
       - DB_HOST=db
       - DB_PORT=5432
       - SECRET_KEY=${SECRET_KEY:-django-insecure-prod-key}
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,0.0.0.0}
+      - ALLOWED_HOSTS=api.jausim.com,localhost,127.0.0.1
     ports:
-      - "8000:8000"
+      - "8005:8000"
     depends_on:
       - db
 
