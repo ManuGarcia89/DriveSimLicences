@@ -20,8 +20,8 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-drivesim_pass}
       - DB_HOST=db
       - DB_PORT=5432
-      - SECRET_KEY=${SECRET_KEY:-django-insecure-prod-key}
-      - ALLOWED_HOSTS=api.jausim.com,localhost,127.0.0.1
+      - SECRET_KEY=${SECRET_KEY:-django-insecure-prod-key-123}
+      - ALLOWED_HOSTS=*
     ports:
       - "8005:8000"
     depends_on:
