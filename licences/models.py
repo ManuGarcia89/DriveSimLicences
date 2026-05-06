@@ -2,7 +2,8 @@ from django.db import models
 
 class Licencia(models.Model):
     id = models.UUIDField(primary_key=True)
-    fecha_vencimiento = models.DateField()
+    descripcion = models.CharField(max_length=255, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"Licencia {self.id} - Vence: {self.fecha_vencimiento}"
+        return f"Licencia {self.id} - {'Activa' if self.is_active else 'Inactiva'}"
